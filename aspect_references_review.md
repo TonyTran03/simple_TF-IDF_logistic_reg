@@ -1,4 +1,4 @@
-| Review | Sentence | Proposed aspect | Exact CSV excerpt |
+| Review | Sentence | Aspect | Exact CSV excerpt |
 |---|---|---|---|
 | 84 | 6 | Food | Chicken was tender and juicy. |
 | 96 | 8 | Food | Chicken was flavourful, tender and juicy. |

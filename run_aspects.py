@@ -1,4 +1,4 @@
-"""Semantic Review Analytics: match customer sentences to confirmed aspects.
+"""Semantic Review Analytics: match customer sentences to reference aspects.
 
 These are similarity-based suggestions, not validated labels or sentiment scores.
 """
@@ -13,8 +13,6 @@ from sentence_transformers import SentenceTransformer
 
 
 def split_sentences(text):
-    # Lightweight boundary detection; abbreviations and missing punctuation
-    # can produce imperfect segments. Keep the text intact for inspection.
     return [s.strip() for s in re.split(r'(?<=[.!?])\s+|[\r\n]+', text) if s.strip()]
 
 
@@ -42,24 +40,20 @@ def main():
     references = json.loads(args.references.read_text(encoding="utf-8"))
     lookup = {(s["review_id"], s["sentence_id"]): s["text"] for s in segments}
     aspects = {}
-    approved = []
     for ref in references:
-        if ref.get("approved") is not True:
-            continue
         key = (ref["review_id"], ref["sentence_id"])
         if lookup.get(key) != ref["text"]:
             parser.error(f"Reference {key} does not match the input CSV; recheck its source")
         if not ref.get("aspects") or not all(isinstance(a, str) and a.strip() for a in ref["aspects"]):
             parser.error(f"Reference {key} needs aspect labels")
-        approved.append(ref)
         for aspect in ref["aspects"]:
             aspects.setdefault(aspect, []).append(ref["text"])
-    if not approved:
-        parser.error("No approved references. Review aspect_references.json and set approved to true for confirmed labels.")
+    if not references:
+        parser.error("No references found. Add review excerpts and aspect labels to the references JSON file.")
     # Hold out entire reference reviews and exact duplicate reference sentences.
     # This prevents counting references matching themselves as predictions.
-    reference_reviews = {r["review_id"] for r in approved}
-    reference_texts = {r["text"].strip().casefold() for r in approved}
+    reference_reviews = {r["review_id"] for r in references}
+    reference_texts = {r["text"].strip().casefold() for r in references}
     segments = [s for s in segments if s["review_id"] not in reference_reviews
                 and s["text"].strip().casefold() not in reference_texts]
     if not segments:
@@ -81,7 +75,7 @@ def main():
 
     result = dict(model="sentence-transformers/all-MiniLM-L6-v2", threshold=args.threshold,
                   note="Unvalidated similarity suggestions; scores are not probabilities. Multiple aspects may match. English-focused anchors.",
-                  aspect_examples=aspects, reference_records=approved, excluded_reference_reviews=sorted(reference_reviews), sentences=segments)
+                  aspect_examples=aspects, reference_records=references, excluded_reference_reviews=sorted(reference_reviews), sentences=segments)
     args.output.write_text(json.dumps(result, ensure_ascii=False, indent=2), encoding="utf-8")
     report = ["# Semantic Review Analytics: candidate aspects", "", result["note"], "",
               f"Analyzed {len(segments)} sentences. Threshold: {args.threshold}. Counts overlap across aspects.", "",

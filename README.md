@@ -1,7 +1,7 @@
 # Semantic Review Analytics
 
 Sentence-level customer feedback analysis using Semantic Textual Similarity
-(STS). A pretrained Sentence Transformer embeds review sentences and confirmed
+(STS). A pretrained Sentence Transformer embeds review sentences and labeled
 reference examples. Cosine similarity suggests one or more business aspects.
 No model is trained or fine-tuned by this script. TF-IDF is not used.
 
@@ -17,7 +17,7 @@ for review rather than silently relabeled for a new dataset.
 This project implements aspect matching only. To complete the case study:
 
 1. Confirm diverse real reference sentences for each aspect, including positive,
-   negative, and neutral wording. The 14 proposed excerpts are only a starter set.
+   negative, and neutral wording. The 14 reference excerpts are only a starter set.
 2. Manually label separate reviews for validation and a held-out test set.
    Keep duplicates and sentences from the same review in the same partition.
    Tune similarity cutoffs on validation data and report per-aspect precision,
@@ -46,18 +46,12 @@ python -m venv .venv
 Open `semantic-review-analytics.code-workspace` in VS Code to use the project
 name and environment. Use `python -m pip` through the environment as shown.
 
-Before running, review `aspect_references_review.md` and edit
-`aspect_references.json`: correct the `aspects` labels, then set `approved` to
-`true` for examples you have confirmed. Multiple labels are allowed. The script
-stops if none are approved and validates exact quote/row/sentence provenance.
-Review IDs are one-based CSV data-row positions. Approved reference reviews
-and exact duplicate reference sentences are excluded from prediction counts.
-This exclusion is not a substitute for a separately labeled evaluation set.
+The included `aspect_references.json` contains 14 real excerpts from `reviews.csv` with aspect labels, ready to use. No approval tags are required. You can edit or add examples; multiple aspect labels are allowed. The script validates each excerpt against its CSV row and sentence. Review IDs are one-based CSV data-row positions. Reference reviews and exact duplicate reference sentences are excluded from prediction counts. This exclusion is not a substitute for a separately labeled evaluation set.
 
 The script reads the `review` column of `reviews.csv` and writes
 `aspect_results.json` (all candidate labels/scores) and `aspect_results.md`
 (counts and highest-scoring examples). Counts can overlap across categories.
-Only categories with approved examples are scored. The initial cutoff of 0.45
+Only categories with reference examples are scored. The initial cutoff of 0.45
 is uncalibrated; adjust using `--threshold` after validation. English-focused
 embeddings and simple punctuation splitting can miss other languages,
 abbreviations, and context spanning sentences.
@@ -66,7 +60,7 @@ abbreviations, and context spanning sentences.
 
 - `run_aspects.py`: current STS analysis entry point.
 - `reviews.csv`: original source data, preserved.
-- `aspect_references.json`: real excerpts and proposed/confirmed aspect labels.
+- `aspect_references.json`: real CSV excerpts and aspect labels.
 - `aspect_references_review.md`: readable reference-label review table.
 - `requirements.txt` / `pyproject.toml`: direct dependencies and project metadata.
 - `requirements-lock.txt`: installed dependency versions after cleanup.

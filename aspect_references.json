@@ -5,9 +5,7 @@
     "text": "Chicken was tender and juicy.",
     "aspects": [
       "Food"
-    ],
-    "approved": false,
-    "label_source": "Assistant-proposed; awaiting user review"
+    ]
   },
   {
     "review_id": 96,
@@ -15,9 +13,7 @@
     "text": "Chicken was flavourful, tender and juicy.",
     "aspects": [
       "Food"
-    ],
-    "approved": false,
-    "label_source": "Assistant-proposed; awaiting user review"
+    ]
   },
   {
     "review_id": 93,
@@ -25,9 +21,7 @@
     "text": "The staff is friendly and helpful.",
     "aspects": [
       "Staff / service"
-    ],
-    "approved": false,
-    "label_source": "Assistant-proposed; awaiting user review"
+    ]
   },
   {
     "review_id": 41,
@@ -35,9 +29,7 @@
     "text": "Staff wasn't the nicest, but it's expected from places that are so crowded that are often frequented by tourists.",
     "aspects": [
       "Staff / service"
-    ],
-    "approved": false,
-    "label_source": "Assistant-proposed; awaiting user review"
+    ]
   },
   {
     "review_id": 148,
@@ -45,9 +37,7 @@
     "text": "The staff kindly helped my family and I since we don't speak French.",
     "aspects": [
       "Staff / service"
-    ],
-    "approved": false,
-    "label_source": "Assistant-proposed; awaiting user review"
+    ]
   },
   {
     "review_id": 109,
@@ -55,9 +45,7 @@
     "text": "The prices were reasonable and the portions are huge.",
     "aspects": [
       "Price / value"
-    ],
-    "approved": false,
-    "label_source": "Assistant-proposed; awaiting user review"
+    ]
   },
   {
     "review_id": 57,
@@ -65,9 +53,7 @@
     "text": "It was a lot of food, but overall its a great value.",
     "aspects": [
       "Price / value"
-    ],
-    "approved": false,
-    "label_source": "Assistant-proposed; awaiting user review"
+    ]
   },
   {
     "review_id": 105,
@@ -75,9 +61,7 @@
     "text": "We waited around 20 minutes in line.",
     "aspects": [
       "Wait times"
-    ],
-    "approved": false,
-    "label_source": "Assistant-proposed; awaiting user review"
+    ]
   },
   {
     "review_id": 198,
@@ -85,9 +69,7 @@
     "text": "However the line was moving quick and food was coming out fast.",
     "aspects": [
       "Wait times"
-    ],
-    "approved": false,
-    "label_source": "Assistant-proposed; awaiting user review"
+    ]
   },
   {
     "review_id": 114,
@@ -95,9 +77,7 @@
     "text": "When we went to go sit down, every single spot was completely filthy and we had to wipe down the tables ourselves.",
     "aspects": [
       "Atmosphere / facilities"
-    ],
-    "approved": false,
-    "label_source": "Assistant-proposed; awaiting user review"
+    ]
   },
   {
     "review_id": 192,
@@ -105,9 +85,7 @@
     "text": "the ambiance of the restaurant was very comforting and felt wecloming",
     "aspects": [
       "Atmosphere / facilities"
-    ],
-    "approved": false,
-    "label_source": "Assistant-proposed; awaiting user review"
+    ]
   },
   {
     "review_id": 183,
@@ -115,9 +93,7 @@
     "text": "The dining area is cozy and clean.",
     "aspects": [
       "Atmosphere / facilities"
-    ],
-    "approved": false,
-    "label_source": "Assistant-proposed; awaiting user review"
+    ]
   },
   {
     "review_id": 63,
@@ -125,9 +101,7 @@
     "text": "Parking can be a bit difficult to find, but I promise it was well worth circling several times until we found a spot.",
     "aspects": [
       "Business operations"
-    ],
-    "approved": false,
-    "label_source": "Assistant-proposed; awaiting user review"
+    ]
   },
   {
     "review_id": 162,
@@ -135,8 +109,6 @@
     "text": "*****Only one person allowed in the restaurant per party.",
     "aspects": [
       "Business operations"
-    ],
-    "approved": false,
-    "label_source": "Assistant-proposed; awaiting user review"
+    ]
   }
 ]

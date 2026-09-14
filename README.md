@@ -8,7 +8,7 @@ customer-experience topics. Start with [the CSV results](results/aspect_results.
 ```powershell
 python -m venv .venv
 .\.venv\Scripts\python.exe -m pip install -r requirements.txt
-.\.venv\Scripts\python.exe run.py
+.\.venv\Scripts\python.exe -X utf8 run.py
 ```
 
 The model may download on the first run. Running again replaces the results.

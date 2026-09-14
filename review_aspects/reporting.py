@@ -2,7 +2,6 @@ import csv
 
 
 def write_csv(result, output_path):
-    """Export one sentence per row with binary parent-category columns."""
     parents = result.get("aspect_parents", {})
     categories = list(
         dict.fromkeys(
@@ -11,8 +10,8 @@ def write_csv(result, output_path):
     )
     columns = ["review_id", "sentence_id", "text", "status", *categories]
     output_path.parent.mkdir(parents=True, exist_ok=True)
-    # A UTF-8 BOM lets Excel recognize accents; csv handles commas and quotes.
-    with output_path.open("w", encoding="utf-8-sig", newline="") as stream:
+
+    with output_path.open("w", newline="") as stream:
         writer = csv.DictWriter(stream, fieldnames=columns)
         writer.writeheader()
         for segment in result["sentences"]:

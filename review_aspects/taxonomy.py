@@ -1,5 +1,3 @@
-"""Parent categories and subcategories used for deduplicated reporting."""
-
 ASPECT_GROUPS = {
     "Food": [
         "Taste / seasoning",
@@ -34,5 +32,4 @@ ASPECT_PARENTS = {
 
 
 def parent_categories(labels):
-    """Count each parent or standalone aspect only once per sentence."""
     return list(dict.fromkeys(ASPECT_PARENTS.get(label, label) for label in labels))

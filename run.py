@@ -1,5 +1,3 @@
-"""Run review aspect analysis. See review_aspects/ for the implementation."""
-
 from pathlib import Path
 
 from review_aspects.data import (
@@ -18,12 +16,9 @@ THRESHOLD = 0.45
 
 
 def main():
-    try:
-        segments = load_sentences(INPUT_CSV)
-        references, aspects = load_references(REFERENCES, segments)
-        segments, excluded_reviews = exclude_reference_sentences(segments, references)
-    except ValueError as error:
-        raise SystemExit(str(error)) from error
+    segments = load_sentences(INPUT_CSV)
+    references, aspects = load_references(REFERENCES)
+    segments, excluded_reviews = exclude_reference_sentences(segments, references)
 
     scores = score_aspects(segments, aspects)
     segments = assign_candidates(segments, scores, THRESHOLD)

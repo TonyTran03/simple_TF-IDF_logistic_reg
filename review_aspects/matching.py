@@ -1,5 +1,3 @@
-"""Compute sentence similarities and attach candidate aspect labels."""
-
 import numpy as np
 from sentence_transformers import SentenceTransformer
 
@@ -9,16 +7,15 @@ MODEL_NAME = "sentence-transformers/all-MiniLM-L6-v2"
 
 
 def score_aspects(segments, aspects):
-    """For each sentence, take its best reference similarity for each aspect."""
     model = SentenceTransformer(MODEL_NAME)
     reference_texts = [text for examples in aspects.values() for text in examples]
     sentence_vectors = model.encode(
         [segment["text"] for segment in segments], normalize_embeddings=True
     )
     reference_vectors = model.encode(reference_texts, normalize_embeddings=True)
-    # Normalized vectors have length 1, so their dot product is cosine similarity.
+
     similarities = sentence_vectors @ reference_vectors.T
-    # References were flattened in aspect order. Each slice belongs to one aspect.
+
     offset = 0
     scores = {}
     for aspect, examples in aspects.items():
@@ -30,7 +27,6 @@ def score_aspects(segments, aspects):
 
 
 def assign_candidates(segments, scores, threshold):
-    """Attach scores and every aspect passing the cutoff to each sentence."""
     for sentence_index, segment in enumerate(segments):
         segment["scores"] = {
             aspect: round(float(values[sentence_index]), 4)
@@ -52,7 +48,6 @@ def assign_candidates(segments, scores, threshold):
 
 
 def build_result(segments, aspects, references, excluded_reviews, threshold):
-    """Package the results and the references used to produce them."""
     return {
         "model": MODEL_NAME,
         "threshold": threshold,

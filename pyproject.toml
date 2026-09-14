@@ -1,7 +1,0 @@
-[project]
-name = "semantic-review-analytics"
-version = "0.1.0"
-description = "Customer review aspect matching using semantic textual similarity"
-readme = "README.md"
-requires-python = ">=3.12"
-dependencies = ["numpy==2.5.3", "sentence-transformers==6.0.1"]

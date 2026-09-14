@@ -1,4 +1,0 @@
-{
-  "folders": [{"name": "Semantic Review Analytics", "path": "."}],
-  "settings": {"python.defaultInterpreterPath": "${workspaceFolder}/.venv/Scripts/python.exe"}
-}
